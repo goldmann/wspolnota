@@ -10,7 +10,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100905071007) do
+ActiveRecord::Schema.define(:version => 20100905075328) do
+
+  create_table "apartments", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "lokals", :force => true do |t|
     t.integer  "numer"
