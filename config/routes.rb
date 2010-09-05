@@ -1,4 +1,6 @@
 Wspolnota::Application.routes.draw do
+  resources :lodgers
+
   resources :apartments
 
   # The priority is based upon order of creation:

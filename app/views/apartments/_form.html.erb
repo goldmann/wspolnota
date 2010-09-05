@@ -1,17 +1,29 @@
 <%= form_for(@apartment) do |f| %>
-  <% if @apartment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@apartment.errors.count, "error") %> prohibited this apartment from being saved:</h2>
+    <% if @apartment.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@apartment.errors.count, "error") %> prohibited this apartment from being saved:</h2>
 
-      <ul>
-      <% @apartment.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @apartment.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :number, 'Numer lokalu' %>
+      <br/>
+      <%= f.number_field :number %>
     </div>
-  <% end %>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="field">
+      <%= f.label :area, 'Powierzchnia' %>
+      <br/>
+      <%= f.text_field :area %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit('Zapisz') %>
+    </div>
 <% end %>

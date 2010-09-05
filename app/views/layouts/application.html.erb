@@ -8,7 +8,25 @@
 </head>
 <body>
 
-<%= yield %>
+<div id="menu">
+  <ul>
+    <li><a href="<%= lodgers_url %>">Strona główna</a></li>
+    <li><a href="<%= lodgers_url %>">Lokatorzy</a></li>
+    <li><a href="<%= apartments_url %>">Lokale</a></li>
+  </ul>
+</div>
+
+<% [:notice, :warning, :error].each do |key| %>
+    <% if flash[key] %>
+        <div class="<%= key %>" id="flash">
+          <%= flash[key] %>
+        </div>
+    <% end %>
+<% end %>
+
+<div id="body">
+  <%= yield %>
+</div>
 
 </body>
 </html>

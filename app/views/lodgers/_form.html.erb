@@ -1,0 +1,46 @@
+<%= form_for(@lodger) do |f| %>
+    <% if @lodger.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@lodger.errors.count, "error") %> prohibited this lodger from being saved:</h2>
+
+          <ul>
+            <% @lodger.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :apartment, 'Numer lokalu' %>
+      <br/>
+      <%= f.select :apartment_id, Apartment.all.collect { |a| [ a.number, a.id ]  } %>
+    </div>
+
+    <div class="field">
+      <%= f.label :first_name, 'Imię' %>
+      <br/>
+      <%= f.text_field :first_name, :size => 20 %>
+    </div>
+    <div class="field">
+      <%= f.label :last_name, 'Nazwisko' %>
+      <br/>
+      <%= f.text_field :last_name, :size => 30 %>
+    </div>
+
+    <div class="field">
+      <%= f.label :person_count, 'Zadeklarowana ilość osób' %>
+      <br/>
+      <%= f.number_field :person_count, :size => 5 %>
+    </div>
+
+    <div class="field">
+      <%= f.label :water_consumption, 'Zadeklarowane zużycie wody na miesiąc' %>
+      <br/>
+      <%= f.number_field :water_consumption, :size => 5 %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit('Zapisz') %>
+    </div>
+<% end %>

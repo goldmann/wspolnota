@@ -1,5 +1,12 @@
-<p id="notice"><%= notice %></p>
+<p>
+  <b>Numer lokalu:</b>
+  <%= @apartment.number %>
+</p>
 
+<p>
+  <b>Powierzchnia:</b>
+  <%= @apartment.area %>
+</p>
 
-<%= link_to 'Edit', edit_apartment_path(@apartment) %> |
-<%= link_to 'Back', apartments_path %>
+<%= link_to 'Edycja', edit_apartment_path(@apartment) %> |
+<%= link_to 'Powrót', apartments_path %>

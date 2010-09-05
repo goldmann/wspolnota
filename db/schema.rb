@@ -10,21 +10,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100905075328) do
+ActiveRecord::Schema.define(:version => 20100905075754) do
 
   create_table "apartments", :force => true do |t|
+    t.integer  "number"
+    t.float    "area"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "lokals", :force => true do |t|
-    t.integer  "numer"
-    t.float    "powierzchnia"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "lokators", :force => true do |t|
+  create_table "lodgers", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "person_count"
+    t.integer  "water_consumption"
+    t.integer  "apartment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

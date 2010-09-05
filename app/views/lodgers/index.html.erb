@@ -1,0 +1,27 @@
+<h1>Lokatorzy</h1>
+
+<% unless @lodgers.empty? %>
+    <table cellspacing="5" cellspacing="0" style="background-color: #fff;">
+  <tr>
+    <th>Imię</th>
+    <th>Nazwisko</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @lodgers.each do |lodger| %>
+  <tr>
+    <td><%= lodger.first_name %></td>
+    <td><%= lodger.last_name %></td>
+    <td><%= link_to 'Pokaż', lodger %></td>
+    <td><%= link_to 'Edytuj', edit_lodger_path(lodger) %></td>
+    <td><%= link_to 'Usuń', lodger, :confirm => 'Na pewno?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+<% else %>
+    <p>Brak lokatorów</p>
+<% end %>
+
+<p><%= link_to 'Nowy lokator', new_lodger_path %></p>
