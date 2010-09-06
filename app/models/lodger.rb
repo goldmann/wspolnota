@@ -1,5 +1,8 @@
 class Lodger < ActiveRecord::Base
-  validates_presence_of :first_name, :last_name
+  validates :apartment_id, :presence => true, :uniqueness => true
 
-  has_one :apartment
+  validates_presence_of :first_name, :last_name
+  validates_numericality_of :person_count, :water_consumption
+
+  belongs_to :apartment
 end

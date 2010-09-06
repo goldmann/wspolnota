@@ -1,13 +1,59 @@
-<p>
-  <b>Imię:</b>
-  <%= @lodger.first_name %>
-</p>
+<h1>Lokator '<%= @lodger.first_name %> <%= @lodger.last_name %>'</h1>
 
-<p>
-  <b>Nazwisko:</b>
-  <%= @lodger.last_name %>
-</p>
+<table cellspacing="1" cellpadding="2" class="main">
+  <tr>
+    <td><b>Imię:</b></td>
+    <td><%= @lodger.first_name %></td>
+  </tr>
+  <tr>
+    <td><b>Nazwisko:</b></td>
+    <td><%= @lodger.last_name %></td>
+  </tr>
+  <tr>
+    <td><b>Zadeklarowana ilość osób:</b></td>
+    <td><%= @lodger.person_count %></td>
+  </tr>
+  <tr>
+    <td><b>Zadeklarowane zużycie wody:</b></td>
+    <td><%= @lodger.water_consumption %> m<sup>3</sup></td>
+  </tr>
+  <tr>
+    <td><b>Numer lokalu:</b></td>
+    <td><%= @lodger.apartment.number %></td>
+  </tr>
+  <tr>
+    <td><b>Powierzchnia lokalu:</b></td>
+    <td><%= @lodger.apartment.floorage %> m<sup>2</sup></td>
+  </tr>
+</table>
 
+<h2>Aktualne składniki czynszu</h2>
 
-<%= link_to 'Edytuj', edit_lodger_path(@lodger) %> |
-<%= link_to 'Powrót', lodgers_path %>
+<% unless @rates.empty? %>
+    <table cellspacing="0" cellpadding="4" class="rates">
+      <tr>
+        <th>Czynnik</th>
+        <th>Cena jednostkowa</th>
+        <th>Ilość</th>
+        <th>Jednostka</th>
+        <th>Wartość</th>
+      </tr>
+      <% @rates.each do |rate, amount| %>
+          <tr>
+            <td><%= Rate::RATES[rate.symbol.to_sym][:name] %></td>
+            <td><%= number_to_currency( rate.value ) %></td>
+            <td><%= amount %></td>
+            <td><%= rate_unit( rate ) %></td>
+            <td style="text-align: right;"><%= number_to_currency( rate.value * amount ) %></td>
+          </tr>
+      <% end %>
+      <tr>
+        <td class="sum_row" colspan="4"><b>SUMA</b></td>
+        <td class="sum_row"><b><%= number_to_currency( @rates.values.inject(0) { |sum, item| sum + item } ) %></b></td>
+      </tr>
+    </table>
+<% end %>
+
+<div class="small_menu">
+  <%= link_to 'Edytuj', edit_lodger_path(@lodger) %> | <%= link_to 'Powrót', lodgers_path %>
+</div>

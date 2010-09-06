@@ -1,7 +1,7 @@
 <%= form_for(@apartment) do |f| %>
     <% if @apartment.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(@apartment.errors.count, "error") %> prohibited this apartment from being saved:</h2>
+          <h2>Ilość błędów: <%= @apartment.errors.count %></h2>
 
           <ul>
             <% @apartment.errors.full_messages.each do |msg| %>
@@ -18,9 +18,9 @@
     </div>
 
     <div class="field">
-      <%= f.label :area, 'Powierzchnia' %>
+      <%= f.label :floorage, 'Powierzchnia' %>
       <br/>
-      <%= f.text_field :area %>
+      <%= f.text_field :floorage %> m2
     </div>
 
     <div class="actions">

@@ -1,3 +1,3 @@
 class Apartment < ActiveRecord::Base
-  belongs_to :lodger
+  validates_numericality_of :floorage, :number
 end

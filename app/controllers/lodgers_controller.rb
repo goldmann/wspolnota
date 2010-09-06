@@ -1,4 +1,6 @@
 class LodgersController < ApplicationController
+  include ApartmentsHelper
+
   # GET /lodgers
   # GET /lodgers.xml
   def index
@@ -15,6 +17,19 @@ class LodgersController < ApplicationController
   def show
     @lodger = Lodger.find(params[:id])
 
+    @rates = {}
+
+    Rate::RATES.each do |rate_symbol, r|
+      rate = Rate.where("symbol = '#{rate_symbol}' AND effective_date_of <= '#{Time.now.to_date}'" ).limit(1).order( 'effective_date_of DESC' ).first
+
+      unless rate.nil?
+        @rates[rate] = @lodger.person_count unless r[:rate_person_count].nil?
+        @rates[rate] = @lodger.apartment.floorage unless r[:rate_floorage].nil?
+        @rates[rate] = @lodger.water_consumption unless r[:rate_water_declaration].nil?
+        @rates[rate] = 1 unless r[:rate_constant].nil?
+      end
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @lodger }
@@ -24,12 +39,6 @@ class LodgersController < ApplicationController
   # GET /lodgers/new
   # GET /lodgers/new.xml
   def new
-    if Apartment.count == 0
-      flash.warning = "Brak lokali! Dodaj najpierw lokal."
-      redirect_to lodgers_path
-      return
-    end
-
     @lodger = Lodger.new
 
     respond_to do |format|

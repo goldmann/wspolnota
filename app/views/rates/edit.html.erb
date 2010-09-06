@@ -1,0 +1,6 @@
+<h1>Edycja stawki '<%= Rate::RATES[@rate.symbol.to_sym][:name] %>'</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Pokaż', @rate %> |
+<%= link_to 'Powrót', rates_path %>

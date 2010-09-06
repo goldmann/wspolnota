@@ -10,11 +10,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100905075754) do
+ActiveRecord::Schema.define(:version => 20100905153215) do
 
   create_table "apartments", :force => true do |t|
     t.integer  "number"
-    t.float    "area"
+    t.float    "floorage"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -25,6 +25,14 @@ ActiveRecord::Schema.define(:version => 20100905075754) do
     t.integer  "person_count"
     t.integer  "water_consumption"
     t.integer  "apartment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rates", :force => true do |t|
+    t.string   "symbol"
+    t.float    "value"
+    t.date     "effective_date_of"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

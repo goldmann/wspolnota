@@ -13,7 +13,7 @@
       <% @apartments.each do |apartment| %>
           <tr>
             <td><%= apartment.number %></td>
-            <td><%= apartment.area %></td>
+            <td><%= apartment.floorage %></td>
             <td><%= link_to 'Pokaż', apartment %></td>
             <td><%= link_to 'Edytuj', edit_apartment_path(apartment) %></td>
             <td><%= link_to 'Usuń', apartment, :confirm => 'Na pewno?', :method => :delete %></td>

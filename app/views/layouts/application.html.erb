@@ -10,9 +10,10 @@
 
 <div id="menu">
   <ul>
-    <li><a href="<%= lodgers_url %>">Strona główna</a></li>
-    <li><a href="<%= lodgers_url %>">Lokatorzy</a></li>
-    <li><a href="<%= apartments_url %>">Lokale</a></li>
+    <li><%= link_to 'Strona główna', :controller => :root, :action => :index %></li>
+    <li><%= link_to 'Lokatorzy', lodgers_url %></li>
+    <li><%= link_to 'Lokale', apartments_url %></li>
+    <li><%= link_to 'Stawki', rates_url %></li>
   </ul>
 </div>
 

@@ -1,0 +1,21 @@
+<h1>Stawka '<%= Rate::RATES[@rate.symbol.to_sym][:name] %>'</h1>
+
+<table cellspacing="1" cellpadding="2" class="main">
+  <tr>
+    <td><b>Nazwa:</b></td>
+    <td><%= Rate::RATES[@rate.symbol.to_sym][:name] %></td>
+  </tr>
+  <tr>
+    <td><b>Wartość:</b></td>
+    <td><%= number_to_currency( @rate.value ) %></td>
+  </tr>
+  <tr>
+    <td><b>Data obowiązywania:</b></td>
+    <td><%= @rate.effective_date_of %></td>
+  </tr>
+
+</table>
+
+<div class="small_menu">
+  <%= link_to 'Edytuj', edit_rate_path(@rate) %> | <%= link_to 'Powrót', rates_path %>
+</div>

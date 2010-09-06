@@ -1,7 +1,7 @@
 <%= form_for(@lodger) do |f| %>
     <% if @lodger.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(@lodger.errors.count, "error") %> prohibited this lodger from being saved:</h2>
+          <h2>Ilość błędów: <%= @lodger.errors.count %></h2>
 
           <ul>
             <% @lodger.errors.full_messages.each do |msg| %>
@@ -12,9 +12,9 @@
     <% end %>
 
     <div class="field">
-      <%= f.label :apartment, 'Numer lokalu' %>
+      <%= f.label :apartment_id, 'Numer lokalu' %>
       <br/>
-      <%= f.select :apartment_id, Apartment.all.collect { |a| [ a.number, a.id ]  } %>
+      <%= f.select :apartment_id, Apartment.all.collect { |a| [ a.number, a.id ] }, :include_blank => '-- wybierz --' %>
     </div>
 
     <div class="field">

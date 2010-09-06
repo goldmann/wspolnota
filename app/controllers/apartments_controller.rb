@@ -44,7 +44,7 @@ class ApartmentsController < ApplicationController
 
     respond_to do |format|
       if @apartment.save
-        format.html { redirect_to(@apartment, :notice => 'Apartment was successfully created.') }
+        format.html { redirect_to(@apartment, :notice => 'Lokal został utworzony..') }
         format.xml  { render :xml => @apartment, :status => :created, :location => @apartment }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class ApartmentsController < ApplicationController
 
     respond_to do |format|
       if @apartment.update_attributes(params[:apartment])
-        format.html { redirect_to(@apartment, :notice => 'Apartment was successfully updated.') }
+        format.html { redirect_to(@apartment, :notice => 'Lokal został zaktualizowany.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

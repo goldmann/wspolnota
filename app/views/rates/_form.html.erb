@@ -1,0 +1,35 @@
+<%= form_for(@rate) do |f| %>
+    <% if @rate.errors.any? %>
+        <div id="error_explanation">
+          <h2>Ilość błędów: <%= @rate.errors.count %></h2>
+
+          <ul>
+            <% @rate.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :symbol, 'Typ' %>
+      <br/>
+      <%= f.select :symbol, all_rates %>
+    </div>
+
+    <div class="field">
+      <%= f.label :value, 'Wartość' %>
+      <br/>
+      <%= f.text_field :value, :size => 5 %> PLN
+    </div>
+
+    <div class="field">
+      <%= f.label :effective_date_of, 'Data obowiązywania' %>
+      <br/>
+      <%= f.date_select :effective_date_of, :order => [:day, :month, :year] %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit('Zapisz') %>
+    </div>
+<% end %>

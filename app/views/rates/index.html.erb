@@ -1,0 +1,28 @@
+<h1>Stawki</h1>
+
+<% unless @rates.empty? %>
+    <table cellspacing="5" cellspacing="0" style="background-color: #fff;">
+
+      <tr>
+        <th>Nazwa</th>
+        <th>Wartość</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+
+      <% @rates.each do |rate| %>
+          <tr>
+            <td><%= Rate::RATES[rate.symbol.to_sym][:name] %></td>
+            <td><%= number_to_currency( rate.value ) %></td>
+            <td><%= link_to 'Pokaż', rate %></td>
+            <td><%= link_to 'Edytuj', edit_rate_path(rate) %></td>
+            <td><%= link_to 'Usuń', rate, :confirm => 'Na pewno?', :method => :delete %></td>
+          </tr>
+      <% end %>
+    </table>
+<% else %>
+    <p>Brak stawek</p>
+<% end %>
+
+<p><%= link_to 'Nowa stawka', new_rate_path %></p>
