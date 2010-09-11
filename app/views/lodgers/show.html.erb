@@ -49,11 +49,11 @@
       <% end %>
       <tr>
         <td class="sum_row" colspan="4"><b>SUMA</b></td>
-        <td class="sum_row"><b><%= number_to_currency( @rates.values.inject(0) { |sum, item| sum + item } ) %></b></td>
+        <td class="sum_row"><b><%= number_to_currency( @sum ) %></b></td>
       </tr>
     </table>
 <% end %>
 
 <div class="small_menu">
-  <%= link_to 'Edytuj', edit_lodger_path(@lodger) %> | <%= link_to 'Powrót', lodgers_path %>
+  <%= link_to 'Drukuj', lodger_path(@lodger, :pdf) %> | <%= link_to 'Edytuj', edit_lodger_path(@lodger) %> | <%= link_to 'Powrót', lodgers_path %>
 </div>

@@ -57,7 +57,26 @@ table.main {
 div.small_menu {
     margin-top: 10px;
 }
+
 td.sum_row {
     border-top: 1px solid #ddd;
     text-align: right;
+}
+
+div.rate_past {
+    width: 10px;
+    height: 10px;
+    background-color: crimson;
+}
+
+div.rate_now {
+    width: 10px;
+    height: 10px;
+    background-color: chartreuse;
+}
+
+div.rate_future {
+    width: 10px;
+    height: 10px;
+    background-color: dodgerblue;
 }

@@ -1,9 +1,23 @@
 <h1>Stawki</h1>
 
+<div style="margin-bottom: 10px; background-color: #c7ebff; padding: 5px;">
+  <%= form_tag( '/rates', :method => :get ) do %>
+      <div>
+        <%= check_box_tag :past, :yes, session[:past], :onclick => 'submit()' %>
+        <%= label_tag :past, 'Archiwalne stawki' %>
+      </div>
+      <div>
+        <%= check_box_tag :future, :yes, session[:future], :onclick => 'submit()' %>
+        <%= label_tag :future, 'Przyszłe stawki' %>
+      </div>
+  <% end %>
+</div>
+
 <% unless @rates.empty? %>
     <table cellspacing="5" cellspacing="0" style="background-color: #fff;">
 
       <tr>
+        <th></th>
         <th>Nazwa</th>
         <th>Wartość</th>
         <th></th>
@@ -11,13 +25,16 @@
         <th></th>
       </tr>
 
-      <% @rates.each do |rate| %>
+      <% @rates.each do |rate_info| %>
           <tr>
-            <td><%= Rate::RATES[rate.symbol.to_sym][:name] %></td>
-            <td><%= number_to_currency( rate.value ) %></td>
-            <td><%= link_to 'Pokaż', rate %></td>
-            <td><%= link_to 'Edytuj', edit_rate_path(rate) %></td>
-            <td><%= link_to 'Usuń', rate, :confirm => 'Na pewno?', :method => :delete %></td>
+            <td>
+              <div class="rate_<%= rate_info[:effective_date] %>"></div>
+            </td>
+            <td><%= Rate::RATES[rate_info[:rate].symbol.to_sym][:name] %></td>
+            <td><%= number_to_currency( rate_info[:rate].value ) %></td>
+            <td><%= link_to 'Pokaż', rate_info[:rate] %></td>
+            <td><%= link_to 'Edytuj', edit_rate_path( rate_info[:rate] ) %></td>
+            <td><%= link_to 'Usuń', rate_info[:rate], :confirm => 'Na pewno?', :method => :delete %></td>
           </tr>
       <% end %>
     </table>
